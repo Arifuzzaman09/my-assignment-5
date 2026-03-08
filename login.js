@@ -15,14 +15,33 @@ const signBtn = () => {
     }
 }
 
-
 // Home page
+
+let cruntTab = "all"
+let active = ["btn-primary"]
+
+const loadBtn =(tab)=>{
+
+    let tabs=["all","open","close"]
+    for (const t of tabs) {
+       const tabName = document.getElementById("btn-"+ t)
+       if(t === tab){
+          tabName.classList.add(active)
+       } else{
+        tabName.classList.remove(active)
+       }  
+ 
+    }
+}
+loadBtn(cruntTab)
+
 const issueLoad = () => {
     const url = ("https://phi-lab-server.vercel.app/api/v1/lab/issues")
     fetch(url)
         .then(res => res.json())
         .then(data => displayIssue(data.data))
 }
+  
 
 
 const loadCardDetails = (id) => {
@@ -31,7 +50,7 @@ const loadCardDetails = (id) => {
         .then(details => displayDetails(details.data))
 
 }
-
+  
 
 const displayDetails = (detail) => {
     const detailContainer = document.getElementById("detail-container")
@@ -40,7 +59,7 @@ const displayDetails = (detail) => {
                     <h3 class="text-2xl font-bold">${detail.title}</h3>
                     <div class="flex gap-2 items-center">
 
-                        <p class="bg-green-700 px-2.5 rounded-full text-white">${detail.status}</p>
+                        <p class="bg-green-700 px-2.5 rounded-full text-white">${detail.status === "open" ? "opened" : "colsed"} </p>
                         <p class="text-black"> . Opened by${detail.author}</p>
                         <p class="text-black"> . ${detail.createdAt}</p>
 
@@ -113,4 +132,7 @@ const displayIssue = (issues) => {
 
     });
 }
+
+
+
 issueLoad()
