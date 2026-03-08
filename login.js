@@ -24,32 +24,65 @@ const issueLoad = () => {
         .then(data => displayIssue(data.data))
 }
 
-// "data": [
-// {
-// "id": 1,
-// "title": "Fix navigation menu on mobile devices",
-// "description": "The navigation menu doesn't collapse properly on mobile devices. Need to fix the responsive behavior.",
-// "status": "open",
-// "labels": [
-// "bug",
-// "help wanted"
-// ],
-// "priority": "high",
-// "author": "john_doe",
-// "assignee": "jane_smith",
-// "createdAt": "2024-01-15T10:30:00Z",
-// "updatedAt": "2024-01-15T10:30:00Z"
-// },
+
+const loadCardDetails = (id) => {
+    fetch(`https://phi-lab-server.vercel.app/api/v1/lab/issue/${id}`)
+        .then(res => res.json())
+        .then(details => displayDetails(details.data))
+
+}
+
+
+const displayDetails = (detail) => {
+    const detailContainer = document.getElementById("detail-container")
+    detailContainer.innerHTML = ` 
+               
+                    <h3 class="text-2xl font-bold">${detail.title}</h3>
+                    <div class="flex gap-2 items-center">
+
+                        <p class="bg-green-700 px-2.5 rounded-full text-white">${detail.status}</p>
+                        <p class="text-black"> . Opened by${detail.author}</p>
+                        <p class="text-black"> . ${detail.createdAt}</p>
+
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <div class="flex justify-between items-center gap-1.5 bg-red-200 px-2.5 rounded-full">
+                            <img src="./assets/BugDroid.png" alt="">
+                            <p class="text-red-500">Bug</p>
+                        </div>
+                        <div
+                            class="flex justify-between items-center gap-1.5 bg-yellow-200 px-2.5 rounded-full space-y-1.5">
+                            <img src="./assets/Lifebuoy.png" alt="">
+                            <p class="text-yellow-700">help wanted</p>
+                        </div>
+                    </div>
+
+                    <p>${detail.description}</p>
+
+                    <div class= "flex justify-between items-center">
+                        <div>
+                            <p>Assignee:</p>
+                            <h4>${detail.assignee}</h4>
+                        </div>
+                        <div>
+                            <p>Priority:</p>
+                            <p class="text-red-500 bg-red-200 px-3  rounded-full">${detail.priority}</p>
+                        </div>
+                    </div>
+                `
+    document.getElementById("my_modal").showModal();
+
+}
 
 const displayIssue = (issues) => {
     const issueContainer = document.getElementById('issue-container')
     issueContainer.innerHTML = ""
 
-    
+
     issues.forEach(issue => {
         const div = document.createElement("div")
         div.innerHTML = `
-         <div class="card-issue p-2 space-y-2 bg-white rounded-lg shadow-2xl h-full ">
+         <div onclick="loadCardDetails(${issue.id})" class=" cursor-pointer card-issue p-2 space-y-2 bg-white rounded-lg shadow-2xl h-full ">
                     <div class="flex justify-between items-center">
                         <img src="./assets/Open-Status.png" alt="">
                         <p class="text-red-500 bg-red-200 px-3 rounded-full"> ${issue.priority}</p>
@@ -75,9 +108,9 @@ const displayIssue = (issues) => {
                 </div>
        
        `
-       issueContainer.append(div)
+        issueContainer.append(div)
 
-        console.log(div)
+
     });
 }
 issueLoad()
