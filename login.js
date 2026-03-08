@@ -1,8 +1,3 @@
-
-
-
-
-
 const signBtn = () => {
 
     const userInput = document.getElementById('user-input')
@@ -11,7 +6,7 @@ const signBtn = () => {
     const passValue = passInput.value;
     
     if (userValue === 'admin' && passValue === 'admin123') {
-      console.log('secces')
+   alert('login seccesfull')
       window.location.assign("./home.html");
     }else{
         alert('failed')
