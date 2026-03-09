@@ -21,13 +21,13 @@ const signBtn = () => {
 
 let cruntTab = "all"
 let active = ["btn-primary"]
-
-
+const issueContainer = document.getElementById('issue-container')
+const openContainer = document.getElementById('open-container')
+const closeContainer = document.getElementById('close-container')
+const count = document.getElementById("count")
 
 const loadBtn = (tab) => {
-    const issueContainer = document.getElementById('issue-container')
-    const openContainer = document.getElementById('open-container')
-    const closeContainer = document.getElementById('close-container')
+
 
 
     let tabs = ["all", "open", "close"]
@@ -57,7 +57,9 @@ const loadBtn = (tab) => {
             closeContainer.classList.remove('none')
 
         }
+
     }
+
 
 }
 loadBtn(cruntTab)
@@ -72,9 +74,16 @@ async function issueLoad() {
 
     displayIssue(allData)
 
+    document.getElementById('btn-all').addEventListener('click',function(){
+        const all = allData.length;
+        const allCount = count.innerHTML= all;
+        console.log(allCount)
+    })
+
     document.getElementById('btn-open').addEventListener('click', function () {
         const openStatus = allData.filter((elem) => elem.status === "open")
-
+        const openCount = count.innerText = openStatus.length
+        console.log(openCount)
         const openContainer = document.getElementById('open-container')
         openContainer.innerHTML = ""
         openStatus.forEach(element => {
@@ -115,7 +124,8 @@ async function issueLoad() {
 
     document.getElementById('btn-close').addEventListener('click', function () {
         const closeStatus = allData.filter((elem) => elem.status === "closed")
-
+        const closeCount = count.innerText = closeStatus.length
+        console.log(closeCount)
         const closeContainer = document.getElementById('close-container')
         closeContainer.innerHTML = ""
         closeStatus.forEach(elem => {
@@ -149,14 +159,10 @@ async function issueLoad() {
        `
 
             closeContainer.appendChild(div)
+
         })
-
     })
-
-
-
 }
-
 
 
 const loadCardDetails = (id) => {
@@ -227,7 +233,7 @@ const displayIssue = (issues) => {
                         <div class="flex gap-2.5 items-center">
                             <div class="flex justify-between items-center gap-1.5 bg-red-200 px-2.5 rounded-full">
                                 <img src="./assets/BugDroid.png" alt="">
-                                <p class="text-red-500">Bug</p>
+                                <p class="text-red-500">${issue.labels}</p>
                             </div>
                             <div
                                 class="flex justify-between items-center gap-1.5 bg-yellow-200 px-2.5 rounded-full space-y-1.5">
@@ -252,6 +258,5 @@ const displayIssue = (issues) => {
 }
 
 
-
-
 issueLoad()
+

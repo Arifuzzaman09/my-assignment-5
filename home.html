@@ -33,7 +33,7 @@
                     Tracker</a>
             </div>
             <div class="flex gap-2">
-                <input type="text" placeholder="Search" class="input input-bordered w-24 md:w-auto" />
+                <input id="input-search" type="text" placeholder="Search" class="input input-bordered w-24 md:w-auto" />
                 <div class="dropdown dropdown-end">
                     <div class="">
                         <button class="btn btn-primary"> + New Issue</button>
@@ -56,7 +56,7 @@
                     <div class="flex items-center gap-2">
                         <img src="./assets/Aperture.png" alt="">
                         <div>
-                            <h3 class="text-1xl font-bold">50 Issues</h3>
+                            <h3 class="text-1xl font-bold"><span id="count">50</span> Issues</h3>
                             <p class="text-gray-400">Track and manage your project issues</p>
                         </div>
                     </div>
@@ -74,17 +74,19 @@
                 </div>
             </main>
 
-            <section id="issue-container" class=" grid-cols-1 space-y-2.5 sm:grid grid-cols-4 gap-2.5">
+            <section id="issue-container" class=" col-span-1 space-y-2.5 sm:grid grid-cols-4 gap-2.5">
 
             </section>
 
-            <section id="open-container"  class=" grid-cols-1 space-y-2.5 sm:grid grid-cols-4 gap-2.5">
+            <section id="open-container"  class="col-span-1 space-y-2.5 sm:grid grid-cols-4 gap-2.5">
 
             </section>
 
-            <section id="close-container"  class=" grid-cols-1 space-y-2.5 sm:grid grid-cols-4 gap-2.5">
+            <section id="close-container"  class=" col-span-1 space-y-2.5 sm:grid grid-cols-4 gap-2.5">
 
             </section>
+
+        
 
 
         </section>

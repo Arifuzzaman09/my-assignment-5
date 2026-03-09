@@ -11,3 +11,6 @@
 .none{
     display: none;
 }
+.border{
+    border-top: 2px solid green;
+}
