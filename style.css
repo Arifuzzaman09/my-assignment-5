@@ -8,3 +8,6 @@
 .closetop{
     border-top: 2px solid purple;
 }
+.none{
+    display: none;
+}
