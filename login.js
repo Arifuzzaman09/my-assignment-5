@@ -89,7 +89,7 @@ async function issueLoad() {
         openStatus.forEach(element => {
             const div = document.createElement('div')
             div.innerHTML = `
-         <div onclick="loadCardDetails(${element.id})" class=" cursor-pointer card-issue p-2 space-y-2 bg-white rounded-lg shadow-2xl h-full  ">
+         <div onclick="loadCardDetails(${element.id})" class=" opentop cursor-pointer card-issue p-2 space-y-2 bg-white rounded-lg shadow-2xl h-full  ">
                     <div class="flex justify-between items-center">
                         <img src="./assets/Open-Status.png" alt="">
                         <p class="text-red-500 bg-red-200 px-3 rounded-full"> ${element.priority}</p>
@@ -131,7 +131,7 @@ async function issueLoad() {
         closeStatus.forEach(elem => {
             const div = document.createElement('div')
             div.innerHTML = `
-         <div onclick="loadCardDetails(${elem.id})" class=" cursor-pointer card-issue p-2 space-y-2 bg-white rounded-lg shadow-2xl h-full  ">
+         <div onclick="loadCardDetails(${elem.id})" class="closetop cursor-pointer card-issue p-2 space-y-2 bg-white rounded-lg shadow-2xl h-full  ">
                     <div class="flex justify-between items-center">
                         <img src="./assets/Open-Status.png" alt="">
                         <p class="text-red-500 bg-red-200 px-3 rounded-full"> ${elem.priority}</p>
